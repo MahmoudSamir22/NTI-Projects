@@ -69,14 +69,13 @@ const editUser = (typeOfSearch, valueOfSearch, typeOfEdit, valueOfEdit) => {
         if(typeOfEdit != 'name' && typeOfEdit != 'email') throw new Error('This type of edit is not supported')
         const allUsers = readData()
         if(typeOfEdit == 'email'){
+            if(!validator.isEmail(valueOfEdit)) throw new Error ('Please enter a valid email')
             const emailExist = allUsers.find(user => user.email == valueOfEdit)
             if(emailExist) throw new Error('Email already in use')
         }
-        const user = allUsers.find(user => user[typeOfSearch] == valueOfSearch) 
-        const newUsers = allUsers.filter(user => user[typeOfSearch] != valueOfSearch) 
+        const user = allUsers.find(user => user[typeOfSearch] == valueOfSearch)  
         user[typeOfEdit] = valueOfEdit
-        newUsers.push(user)
-        fs.writeFileSync("users.json", JSON.stringify(newUsers))
+        fs.writeFileSync("users.json", JSON.stringify(allUsers))
         console.log(chalk.green('Succesfully Edited'));
     } catch (e) {
         console.log(chalk.red(e))
