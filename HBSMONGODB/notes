@@ -1,0 +1,21 @@
+register user (name, age, email, password)
+
+get all
+get single 
+delete all
+delete single
+add
+edit
+
+dotenv => config
+
+hbs, fs => json
+installs => express, validator, uniqid, hbs
+path, fs
+views
+    - add user
+    - show all 
+    - edit
+    - single
+
+layouts => header, navbar, footer
